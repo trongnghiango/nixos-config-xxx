@@ -133,7 +133,11 @@ layouts = [
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    # layout.Tile(),
+    layout.Tile(
+        border_focus_stack=["#d75f5f", "#8f3d3d"],
+        border_width=4,
+        margin=8  # Số pixel khoảng cách giữa các window
+    ),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
