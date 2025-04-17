@@ -2,9 +2,9 @@
 set -euo pipefail
 
 # Configuration Variables
-DISK="/dev/sda"          # Điều chỉnh tên disk phù hợp
+DISK="/dev/vda"          # Điều chỉnh tên disk phù hợp
 HOSTNAME="nixos-btw"
-USERNAME="user"
+USERNAME="ka"
 TIMEZONE="Asia/Ho_Chi_Minh"
 LOCALE="en_US.UTF-8"
 KEYMAP="us"
@@ -74,7 +74,7 @@ configure_system() {
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 7d";
 
-  system.stateVersion = "23.11"; 
+  system.stateVersion = "24.11"; 
 }
 EOF
 }
