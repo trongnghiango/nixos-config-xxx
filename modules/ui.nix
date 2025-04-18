@@ -45,10 +45,10 @@
 				name = "Gruvbox-Dark";
 				package = pkgs.gruvbox-dark-icons-gtk;
 			};
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
+      #iconTheme = {
+      #  name = "Papirus-Dark";
+      #  package = pkgs.papirus-icon-theme;
+      #};
 
 	    font = {
         name = "JetBrains Mono";
