@@ -20,6 +20,18 @@
     '';
   };
 
+  home.sessionVariables = {
+    WAL_THEME = "nord";
+  };
+
+  home.file.".config/wal/postrun".text = ''
+#!/bin/sh
+wal --theme nord
+  '';
+
+  home.file.".config/wal/postrun".executable = true;
+	
+  home.file.".config/gtk-3.0/gtk.css".source = "${config.home.homeDirectory}/.cache/wal/colors-gtk.css";
 
   home.file.".config/qtile".source = ./qtile;
 

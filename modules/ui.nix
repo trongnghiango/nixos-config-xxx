@@ -6,6 +6,9 @@
       papirus-icon-theme
       breeze-gtk
       gnome-themes-extra
+	  # pywal - nord 
+	  python3Packages.pywal
+	  nordic
     ];
 
     programs.alacritty = {
@@ -32,8 +35,10 @@
       enable = true;
 
       theme = {
-        name = "Adapta-Nokto";
-        package = pkgs.adapta-gtk-theme;
+		name = "Nordic";
+    	package = pkgs.nordic;
+        # name = "Adapta-Nokto";
+        # package = pkgs.adapta-gtk-theme;
       };
 
       iconTheme = {
@@ -41,6 +46,11 @@
         package = pkgs.papirus-icon-theme;
       };
 
+	  font = {
+        name = "JetBrains Mono";
+        package = pkgs.jetbrains-mono;
+        size = 12;
+      };
       # XÓA PHẦN cursorTheme Ở ĐÂY
     };
 

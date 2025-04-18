@@ -28,6 +28,17 @@ from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import json
+import os
+
+# Đọc màu từ pywal
+wal_colors = json.load(open(os.path.expanduser("~/.cache/wal/colors.json")))
+colors = {
+    "background": wal_colors["special"]["background"],  # #2E3440
+    "foreground": wal_colors["special"]["foreground"],  # #D8DEE9
+    "accent": wal_colors["colors"]["color4"],           # #5E81AC
+    "urgent": wal_colors["colors"]["color1"],           # #BF616A
+}
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -124,8 +135,10 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Max(border_focus=colors["accent"], border_normal=colors["background"]),
+    layout.MonadTall(border_focus=colors["accent"], border_normal=colors["background"]),
+    layout.Columns(border_focus_stack=[colors["accent"], colors["background"]], border_width=4),
+    # layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -152,12 +165,17 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(
+                    background=colors["background"],
+                    foreground=colors["foreground"],
+                    active=colors["accent"],
+                    urgent_border=colors["urgent"],
+                ),
                 widget.Prompt(),
-                widget.WindowName(),
+                widget.WindowName(foreground=colors["foreground"]),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
@@ -167,9 +185,10 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground=colors["foreground"]),
             ],
             24,
+            background=colors["background"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

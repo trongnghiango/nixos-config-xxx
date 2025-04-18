@@ -16,8 +16,8 @@ vim.opt.smartcase = true				-- all searches are case insensitive unless there's 
 vim.opt.hlsearch = false				-- disable all highlighted search results
 vim.opt.incsearch = true				-- enable incremental searching
 vim.opt.wrap = true						-- enable text wrapping
-vim.opt.tabstop = 4						-- tabs=4spaces
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2						-- tabs=2spaces
+vim.opt.shiftwidth = 2
 vim.opt.fileencoding = "utf-8"				-- encoding set to utf-8
 vim.opt.pumheight = 10					-- number of items in popup menu
 vim.opt.showtabline = 2					-- always show the tab line
