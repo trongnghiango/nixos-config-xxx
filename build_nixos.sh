@@ -21,7 +21,7 @@ while [ $# -gt 0 ]; do
 done
 
 # If no valid hostname provided, prompt user
-if [ "$HOST" = "laptop" ] && [ $# -eq 0 ]; then
+if [ "$HOST" = "vm" ] && [ $# -eq 0 ]; then
     read -p "Enter hostname (default: $HOST): " input
     if [ -n "$input" ]; then
         HOST="$input"
