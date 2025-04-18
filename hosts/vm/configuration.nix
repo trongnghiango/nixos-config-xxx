@@ -35,7 +35,7 @@
   };
 
   # Bật Window Manager Qtile
-  services.xserver.windowManager.qtile.enable = true;
+  #services.xserver.windowManager.qtile.enable = true;
 
   # Tuỳ chọn: cấu hình màn hình cụ thể
   services.xserver.extraConfig = ''

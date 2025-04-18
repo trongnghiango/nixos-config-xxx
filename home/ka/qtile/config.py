@@ -32,7 +32,7 @@ import json
 import os
 
 # Đọc màu từ pywal
-wal_colors = json.load(open(os.path.expanduser("~/.cache/wal/colors.json")))
+wal_colors = json.load(open(os.path.expanduser("~/.config/qtile/colors.json")))
 colors = {
     "background": wal_colors["special"]["background"],  # #2E3440
     "foreground": wal_colors["special"]["foreground"],  # #D8DEE9
@@ -165,7 +165,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
+        bottom=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(
@@ -188,7 +188,7 @@ screens = [
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground=colors["foreground"]),
             ],
             24,
-            background=colors["background"],
+            #background=colors["background"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

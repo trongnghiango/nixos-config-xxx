@@ -1,0 +1,12 @@
+{
+  "special": {
+    "background": "#282828",
+    "foreground": "#ebdbb2"
+  },
+  "colors": {
+    "color0": "#1d2021",
+    "color1": "#cc241d",
+    "color4": "#458588",
+    "color8": "#928374"
+  }
+}

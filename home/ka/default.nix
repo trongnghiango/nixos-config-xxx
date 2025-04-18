@@ -8,6 +8,16 @@
   home.homeDirectory = "/home/ka";
   home.stateVersion = "24.11";
 
+	
+	services.qtile = {
+    enable = true;
+    backend = "x11";  # Hoặc "wayland" nếu dùng Wayland
+    extraPackages = with pkgs; [
+      gruvbox-dark-gtk
+      python3Packages.qtile-extras  # Nếu cần
+    ];
+  };
+
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -17,33 +27,26 @@
     initExtra = ''
       export PS1='\[\e[38;5;76m\]\u\[\e[0m\] in \[\e[38;5;32m\]\w\[\e[0m\] \$ '
 	  [[ -f "$HOME/.nprofile" ]] && source "$HOME/.nprofile"
-	  # Chạy pywal khi đăng nhập
-      # wal --theme nord
     '';
   };
 
-  home.sessionVariables = {
-    WAL_THEME = "nord";
-  };
-
   # Tạo file gtk.css từ pywal (sẽ được cập nhật bởi wal --theme nord)
-  home.file.".config/gtk-3.0/gtk.css".text = ''
-    /* Nội dung sẽ được pywal ghi đè khi chạy wal --theme nord */
-  '';
-  home.file.".xprofile".text = ''
-    #!/bin/sh
-    wal --theme nord
-  '';
-  home.file.".xprofile".executable = true;
+  #home.file.".config/gtk-3.0/gtk.css".text = ''
+  #  /* Nội dung sẽ được pywal ghi đè khi chạy wal --theme nord */
+  #'';
 
-  home.file.".config/qtile".source = ./qtile;
+	home.file.".config/qtile" = {
+		source = ./qtile;
+		recursive = true;
+		# Không dùng onChange, reload thủ công bằng phím tắt
+	};
 
   home.file.".config/nvim".source = ./nvim;
 
   home.packages =  with pkgs; [
     bat
     neofetch
-	tree
+		tree
   ];
 
 }

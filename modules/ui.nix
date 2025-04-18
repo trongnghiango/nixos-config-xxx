@@ -6,9 +6,12 @@
       papirus-icon-theme
       breeze-gtk
       gnome-themes-extra
-	  # pywal - nord 
-	  python3Packages.pywal
-	  nordic
+			#gruvbox-material-gtk-theme
+			gruvbox-dark-gtk
+			gruvbox-dark-icons-gtk
+
+			lxappearance  # Công cụ thay đổi theme GTK
+    	qt5ct         # Cấu hình theme cho ứng dụng Qt
     ];
 
     programs.alacritty = {
@@ -31,22 +34,23 @@
     '';
 
 
-	gtk = {
+		# gtk
+	  gtk = {
       enable = true;
-
-      theme = {
-		name = "Nordic";
-    	package = pkgs.nordic;
-        # name = "Adapta-Nokto";
-        # package = pkgs.adapta-gtk-theme;
-      };
-
+			theme = {
+				name = "Gruvbox-Dark-BL";
+				package = pkgs.gruvbox-dark-gtk;
+			};
+			iconTheme = {
+				name = "Gruvbox-Dark";
+				package = pkgs.gruvbox-dark-icons-gtk;
+			};
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
       };
 
-	  font = {
+	    font = {
         name = "JetBrains Mono";
         package = pkgs.jetbrains-mono;
         size = 12;
@@ -61,6 +65,12 @@
       size = 24;
     };
 
+		# Cấu hình QT/QGtkStyle
+		qt = {
+			enable = true;
+			platformTheme = "gtk";
+			style = "gtk2";
+		};
   };
 }
 
