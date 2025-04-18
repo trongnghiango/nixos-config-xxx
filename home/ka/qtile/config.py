@@ -147,9 +147,9 @@ layouts = [
     # layout.MonadWide(),
     # layout.RatioTile(),
     layout.Tile(
-        border_focus_stack=["#d75f5f", "#8f3d3d"],
-        border_width=4,
-        margin=8  # Số pixel khoảng cách giữa các window
+        border_focus_stack=[colors["accent"], colors["background"]],
+        border_width=2,
+        margin=4  # Số pixel khoảng cách giữa các window
     ),
     # layout.TreeTab(),
     # layout.VerticalTile(),
@@ -165,7 +165,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(
@@ -188,7 +188,7 @@ screens = [
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground=colors["foreground"]),
             ],
             24,
-            #background=colors["background"],
+            background=colors["background"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
