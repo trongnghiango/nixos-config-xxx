@@ -11,7 +11,7 @@
 			gruvbox-dark-icons-gtk
 
 			lxappearance  # Công cụ thay đổi theme GTK
-    	qt5ct         # Cấu hình theme cho ứng dụng Qt
+    	libsForQt5.qt5ct         # Cấu hình theme cho ứng dụng Qt
     ];
 
     programs.alacritty = {
