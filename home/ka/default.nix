@@ -31,8 +31,10 @@
 		recursive = true;
 		# Không dùng onChange, reload thủ công bằng phím tắt
 	};
+	home.file.".config/qtile/colors.json".text = builtins.readFile ./qtile/colors.json;
 
   home.file.".config/nvim".source = ./nvim;
+
 
   home.packages =  with pkgs; [
     bat
