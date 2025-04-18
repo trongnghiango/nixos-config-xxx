@@ -8,16 +8,7 @@
   home.homeDirectory = "/home/ka";
   home.stateVersion = "24.11";
 
-	
-	services.qtile = {
-    enable = true;
-    backend = "x11";  # Hoặc "wayland" nếu dùng Wayland
-    extraPackages = with pkgs; [
-      gruvbox-dark-gtk
-      python3Packages.qtile-extras  # Nếu cần
-    ];
-  };
-
+  # 
   programs.bash = {
     enable = true;
     shellAliases = {
