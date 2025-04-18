@@ -29,11 +29,6 @@
     bat
     neofetch
 	tree
-	# for GTK-(2/3)
-	#adapta-gtk-theme          # GTK theme
-    #papirus-icon-theme        # Icon
-    #breeze-gtk                # GTK engine
-    #gnome-themes-extra        # Required for GTK 2 support
   ];
 
 }
