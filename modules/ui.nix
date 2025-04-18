@@ -12,6 +12,8 @@
 
 			lxappearance  # Công cụ thay đổi theme GTK
     	libsForQt5.qt5ct         # Cấu hình theme cho ứng dụng Qt
+
+			noto-fonts
     ];
 
     programs.alacritty = {
@@ -41,20 +43,24 @@
 				name = "Gruvbox-Dark-BL";
 				package = pkgs.gruvbox-dark-gtk;
 			};
-			iconTheme = {
-				name = "Gruvbox-Dark";
-				package = pkgs.gruvbox-dark-icons-gtk;
-			};
-      #iconTheme = {
-      #  name = "Papirus-Dark";
-      #  package = pkgs.papirus-icon-theme;
-      #};
+			#iconTheme = {
+			#	name = "Gruvbox-Dark";
+			#	package = pkgs.gruvbox-dark-icons-gtk;
+			#};
 
-	    font = {
-        name = "JetBrains Mono";
-        package = pkgs.jetbrains-mono;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+
+			font = {
+        #name = "JetBrains Mono";
+        #package = pkgs.jetbrains-mono;
+                name = "Noto Sans";
+                package = pkgs.noto-fonts;
         size = 12;
       };
+
       # XÓA PHẦN cursorTheme Ở ĐÂY
     };
 
