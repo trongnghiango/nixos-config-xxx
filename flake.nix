@@ -12,7 +12,7 @@
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
-      mkHost = name: {
+      mkHost = name: nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./hosts/${name}/hardware-configuration.nix
@@ -27,9 +27,10 @@
       };
     in {
       nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem (mkHost "laptop");
-        server = nixpkgs.lib.nixosSystem (mkHost "server");
-        vm     = nixpkgs.lib.nixosSystem (mkHost "vm");
+        laptop = mkHost "laptop";
+        server = mkHost "server";
+        vm     = mkHost "vm";
       };
     };
 }
+
