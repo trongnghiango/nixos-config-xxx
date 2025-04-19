@@ -35,11 +35,17 @@
 
   home.file.".config/nvim".source = ./nvim;
 
+	# Cấu hình Qtile
+  xsession = {
+    enable = true;
+    windowManager.command = "${pkgs.python3Packages.qtile}/bin/qtile start";
+  };
 
   home.packages =  with pkgs; [
     bat
     neofetch
 		tree
+		python3Packages.qtile
   ];
 
 }

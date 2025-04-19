@@ -20,10 +20,30 @@
   services.dbus.enable = true;
   programs.dconf.enable = true;
 
+	# Định nghĩa các session có thể chọn
+  environment.etc."greetd/environments".text = ''
+		startx /run/current-system/sw/bin/qtile start
+    bash
+  '';
+
 
   # Bật display manager LightDM
   services.xserver.displayManager = {
-    lightdm.enable = true;
+    lightdm = {
+			enable = true;
+
+			greeters.slick = {
+        enable = true;
+        theme = {
+          name = "Adwaita-dark";  # Có thể thay bằng "Gruvbox-Dark"
+          package = pkgs.gnome.gnome-themes-extra;
+        };
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+      };
+		};
 
     # Lệnh chạy sau khi đăng nhập vào session
     sessionCommands = ''
@@ -34,8 +54,12 @@
     '';
   };
 
+
   # Bật Window Manager Qtile
-  services.xserver.windowManager.qtile.enable = true;
+  services.xserver.windowManager.qtile = {
+    enable = true;
+  	package = pkgs.python3Packages.qtile; # Sử dụng gói đúng
+  };
 
   # Tuỳ chọn: cấu hình màn hình cụ thể
   services.xserver.extraConfig = ''
@@ -60,6 +84,12 @@
     pkg-config
     cmake
     neovim
+		
+		#greetd.tuigreet
+		lightdm-gtk-greeter  # Cài GTK greeter cho LightDM
+    papirus-icon-theme   # Nếu bạn muốn dùng theme biểu tượng
+    #python3Packages.qtile
+		#xorg.xinit # Cho startx
     # vim
     wget
     alacritty
@@ -71,7 +101,27 @@
     pfetch
   ];
 
-  fonts.packages = with pkgs; [ jetbrains-mono ];
+  #fonts.packages = with pkgs; [ jetbrains-mono ];
+	fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      # Cài đặt JetBrains Mono với Nerd Font patches
+      (nerdfonts.override { 
+        fonts = [ 
+					"JetBrainsMono" 
+				];  # Chỉ patch JetBrains Mono
+      })
+      
+      # Hoặc cài tất cả Nerd Fonts (nặng hơn)
+      # nerdfonts
+    ];
+    
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "JetBrainsMono Nerd Font Mono" ];
+      };
+    };
+  };
 
   services.openssh.enable = true;
   system.stateVersion = "24.11";

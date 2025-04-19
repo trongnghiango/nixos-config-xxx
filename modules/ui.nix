@@ -21,10 +21,10 @@
       settings = {
         window.opacity = 0.8;
         font.normal = {
-          family = "JetBrains Mono";
-          style = "Regular";
+          family = "JetBrainsMono Nerd Font Mono";
+          style = "Medium";
         };
-        font.size = 14;
+        font.size = 13;
       };
     };
 
@@ -43,15 +43,15 @@
 				name = "Gruvbox-Dark-BL";
 				package = pkgs.gruvbox-dark-gtk;
 			};
-			#iconTheme = {
-			#	name = "Gruvbox-Dark";
-			#	package = pkgs.gruvbox-dark-icons-gtk;
-			#};
+			iconTheme = {
+				name = "Gruvbox-Dark";
+				package = pkgs.gruvbox-dark-icons-gtk;
+			};
 
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
+      #iconTheme = {
+      #  name = "Papirus-Dark";
+      #  package = pkgs.papirus-icon-theme;
+      #};
 
 			font = {
         #name = "JetBrains Mono";
@@ -74,7 +74,7 @@
 		# Cấu hình QT/QGtkStyle
 		qt = {
 			enable = true;
-			platformTheme = "gtk";
+			platformTheme.name = "gtk";
 			style.name = "gtk2";
 		};
   };

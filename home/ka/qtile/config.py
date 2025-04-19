@@ -43,6 +43,16 @@ colors = {
 mod = "mod4"
 terminal = guess_terminal()
 
+# Thêm dictionary ánh xạ
+layout_icons = {
+    "max": "  max ",
+    "monadtall": " 󰍂 monadall ",
+    "stack": "  stack ",
+    "floating": "  floating ",
+    "columns": "  columns ",
+    "tile": " 󰙀 tile ",
+}
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -135,18 +145,25 @@ for i in groups:
     )
 
 layouts = [
-    layout.Max(border_focus=colors["accent"], border_normal=colors["background"]),
-    layout.MonadTall(border_focus=colors["accent"], border_normal=colors["background"]),
-    layout.Columns(border_focus_stack=[colors["accent"], colors["background"]], border_width=4),
+    layout.Max(name=layout_icons["max"], border_focus=colors["accent"], border_normal=colors["background"]),
+    layout.MonadTall(name=layout_icons["monadtall"], border_focus=colors["accent"], border_normal=colors["background"]),
+    #layout.MonadTall(
+    #    name="",  # Icon MonadTall
+    #    border_width=2,
+    #    margin=8,
+    #    ratio=0.6
+    #),
+    layout.Columns(name=layout_icons["columns"], border_focus_stack=[colors["accent"], colors["background"]], border_width=4),
     # layout.Max(),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
+    layout.Stack(name=layout_icons["stack"], num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     layout.Tile(
+        name=layout_icons["tile"],
         border_focus_stack=[colors["accent"], colors["background"]],
         border_width=2,
         margin=4  # Số pixel khoảng cách giữa các window
@@ -154,10 +171,11 @@ layouts = [
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
+    layout.Floating(name=layout_icons["floating"]),
 ]
 
 widget_defaults = dict(
-    font="JetBrains Mono",
+    font="JetBrainsMono Nerd Font Mono",
     fontsize=18,
     padding=4,
 )
@@ -167,7 +185,13 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
+                widget.CurrentLayout(
+                    font="JetBrainsMono Nerd Font Mono",
+                    fontweight="bold",
+                    fontsize=18,
+                    padding=3,
+                    foreground="#d79921",  # Màu vàng Gruvbox
+                ),
                 widget.GroupBox(
                     background=colors["background"],
                     foreground=colors["foreground"],
@@ -182,12 +206,17 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
+
+                # Giữa
+                widget.Spacer(),
+
+                # Right
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", foreground=colors["foreground"]),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p ", foreground=colors["foreground"]),
             ],
-            24,
+            size=30,
             background=colors["background"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
